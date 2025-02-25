@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import CoreData
 
 class CurrentLocationViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
@@ -15,6 +16,8 @@ class CurrentLocationViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     let locationManager = CLLocationManager()
     var location: CLLocation?
@@ -157,6 +160,7 @@ class CurrentLocationViewController: UIViewController {
             let controller = segue.destination as! LocationDetailsViewController
             controller.coordinate = location!.coordinate
             controller.placemark = placemark
+            controller.managedObjectContext = managedObjectContext
         }
     }
 }
